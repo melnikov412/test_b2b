@@ -1,0 +1,27 @@
+  <div style="text-align:center">
+    <h1>
+      Input Title for Search
+    </h1>
+  </div>
+
+  <form #searcheForm="ngForm" (ngSubmit)="searche(searcheForm)">
+    <input type="text" name="title" [(ngModel)]="newSearche" placeholder="Film Title" required>
+    <!--{{newSearche}}-->
+    <button type="submit">Search</button>
+
+  </form>
+
+  <div class="result" *ngIf="search_out">
+    <h3>Result of Search: </h3>
+    {{search_out.Title}}({{search_out.Year}})
+    <!--{{search_out.imdbID}}-->
+    <button class="add_to_list" (click)="add_to_list()">Add to My List of Films</button>
+  </div>
+
+  <div class="mylist" *ngIf="my_list_switch">
+    <h3>My List of Films: </h3>
+    <app-film *ngFor="let film of my_list"
+              [film]="film"
+              (click)="goToDiscription(film.mdbID)"
+    ></app-film>
+  </div>
